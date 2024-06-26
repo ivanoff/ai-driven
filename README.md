@@ -92,6 +92,3 @@ This module requires a valid Claude API key to function. Ensure you have the nec
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
-```
-
-This README provides a comprehensive overview of your `ai-driven` module, including installation instructions, setup process, usage examples, and a list of available API methods. You may want to adjust the license information or add more detailed documentation as needed.

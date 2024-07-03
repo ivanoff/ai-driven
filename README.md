@@ -23,11 +23,12 @@ npm install ai-driven
 ## Setup
 
 1. Create a `.env` file in the root of your project.
-2. Add your Claude API key and URL to the `.env` file:
+2. Add your Claude API key (required) and URL with Model to the `.env` file:
 
 ```
 CLAUDE_API_KEY=your_api_key_here
 CLAUDE_API_URL=https://api.anthropic.com/v1/messages
+CLAUDE_API_MODEL=claude-3-opus-20240229
 ```
 
 ## Usage
@@ -42,7 +43,7 @@ async function main() {
   const assistant = new Assistant();
 
   // Translate text
-  const translatedText = await assistant.translateText('Hello, world!');
+  const translatedText = await assistant.translateText('Hello, world!', 'it');
   console.log('Translated text:', translatedText);
 
   // Check for offensive language
@@ -70,20 +71,20 @@ main().catch(console.error);
 
 The `ai-driven` module provides the following methods:
 
-1. `translateText(text: string): Promise<string>`
-   - Translates the given text to English.
+1. `translateText(text: string, lang?: string, context?: string ): Promise<string>`
+   - Translates the given text to selected language (English by default).
 
 2. `checkForOffensiveLanguage(text: string): Promise<number>`
-   - Checks the given text for offensive language and returns a score from 1 to 10.
+   - Checks the given text for offensive language and returns a score from 1 to 10, where 1 is very peaceful and 10 is extremely aggressive.
 
 3. `checkForProfanity(text: string): Promise<number>`
-   - Checks the given text for profanity and returns a score from 1 to 10.
+   - Checks the given text for profanity and returns a score from 1 to 10, where 1 is very clean and 10 is extremely profane.
 
 4. `checkImageForViolence(imageBuffer: Buffer): Promise<number>`
-   - Analyzes the given image for violent content and returns a score from 1 to 10.
+   - Analyzes the given image for violent content and returns a score from 1 to 10, where 1 is very peaceful and 10 is extremely violent.
 
 5. `checkImageForPornography(imageBuffer: Buffer): Promise<number>`
-   - Analyzes the given image for pornographic content and returns a score from 1 to 10.
+   - Analyzes the given image for pornographic content and returns a score from 1 to 10, where 1 is not pornographic at all and 10 is extremely pornographic.
 
 ## Note
 

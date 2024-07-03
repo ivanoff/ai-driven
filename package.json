@@ -1,14 +1,14 @@
 {
   "name": "ai-driven",
-  "version": "0.0.2",
+  "version": "0.1.1",
   "license": "MIT",
   "author": "Dimitry Ivanov <2@ivanoff.org.ua> # curl -A cv ivanoff.org.ua",
-  "description": "AI Assistant",
+  "description": "AI-Driven Assistant with zero dependencies",
   "keywords": ["ai", "assistant"],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "bun build ./src/index.ts --outdir ./dist && tsc"
+    "build": "bun build ./src/index.ts --outdir ./dist --minify && tsc"
   },
   "devDependencies": {
     "@types/node": "^20.14.9"

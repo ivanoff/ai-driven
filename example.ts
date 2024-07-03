@@ -5,7 +5,7 @@ async function main() {
   const assistant = new Assistant();
 
   // Example of using the translation function
-  const translatedText = await assistant.translateText('Bonjour le monde!');
+  const translatedText = await assistant.translateText('Bonjour le monde!', 'it');
   console.log('Translated text:', translatedText);
 
   // Example of checking for offensive language

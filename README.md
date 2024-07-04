@@ -2,14 +2,13 @@
 
 `ai-driven` is a TypeScript module that uses `Claude AI` and provides easy-to-use functions for **content moderation**, **text translation**, and **image analysis**.
 
-## Example
-
-### API Key
+#### API Key
 
 To use this library, you'll need an API key. You can obtain one from the Anthropic console:
 [https://console.anthropic.com/settings/keys](https://console.anthropic.com/settings/keys)
 
-### A Basic Example
+
+## Example
 
 ```typescript
 import { Assistant } from 'ai-driven';

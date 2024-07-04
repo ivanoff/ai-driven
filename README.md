@@ -1,14 +1,6 @@
 # ai-driven
 
-`ai-driven` is a TypeScript module that provides easy-to-use functions for **content moderation**, **text translation**, and **image analysis**.
-
-It leverages the power of Claude AI to perform various tasks such as:
-
-- Text translation
-- Offensive language detection
-- Profanity checking
-- Violence detection in images
-- Pornographic content detection in images
+`ai-driven` is a TypeScript module that uses `Claude AI` and provides easy-to-use functions for **content moderation**, **text translation**, and **image analysis**.
 
 ## Example
 
@@ -20,14 +12,24 @@ To use this library, you'll need an API key. You can obtain one from the Anthrop
 ### A Basic Example
 
 ```typescript
-import Assistant from 'ai-driven';
+import { Assistant } from 'ai-driven';
 
 const assistant = new Assistant({ apiKey: 'your_api_key_here' });
 
 const translatedText = await assistant.translateText('Hello, world!', 'it');
 
-console.log('Translated text:', translatedText); // => 
+console.log(translatedText); // => Ciao, mondo!
 ```
+
+## Description
+
+`ai-driven` leverages the power of Claude AI to perform various tasks such as:
+
+- Text translation
+- Offensive language detection
+- Profanity checking
+- Violence detection in images
+- Pornographic content detection in images
 
 ## Installation
 
@@ -73,7 +75,7 @@ The assistant will automatically use these environment variables if no configura
 Here's a basic example of how to use the `ai-driven` module:
 
 ```typescript
-import Assistant from 'ai-driven';
+import { Assistant } from 'ai-driven';
 import fs from 'fs/promises';
 
 async function main() {

@@ -40,7 +40,7 @@ class Assistant {
   public async translateText(text: string, lang?: string, context?: string): Promise<string> {
     const l = lang || 'English'
     const c = !context ? '' : `(context: ${context})`;
-    const message = `Translate the following text ${c} to ${l}: "${text}"`;
+    const message = `Translate the following text ${c} to \`${l}\` language: \n\n${text}`;
     return this.sendToClaude(message);
   }
 
@@ -77,4 +77,4 @@ export type AssistantType = {
   apiModel?: string;
 };
 
-export default Assistant;
+export { Assistant };

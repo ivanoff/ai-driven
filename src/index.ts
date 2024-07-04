@@ -3,10 +3,14 @@ class Assistant {
   private apiUrl: string;
   private apiModel: string;
 
-  constructor() {
-    this.apiKey = process.env.CLAUDE_API_KEY || '';
-    this.apiUrl = process.env.CLAUDE_API_URL || 'https://api.anthropic.com/v1/messages';
-    this.apiModel = process.env.CLAUDE_API_MODEL || 'claude-3-haiku-20240307';
+  constructor(options?: AssistantType) {
+    const { apiKey, apiUrl, apiModel } = options || {};
+
+    this.apiKey = apiKey || process.env.CLAUDE_API_KEY || '';
+    this.apiUrl = apiUrl || process.env.CLAUDE_API_URL || 'https://api.anthropic.com/v1/messages';
+    this.apiModel = apiModel || process.env.CLAUDE_API_MODEL || 'claude-3-haiku-20240307';
+
+    if (!this.apiKey) throw new Error('CLAUDE_API_KEY is not defined. You can obtain one from the Anthropic console: https://console.anthropic.com/settings/keys');
   }
 
   private async sendToClaude(message: string): Promise<string> {
@@ -66,5 +70,11 @@ class Assistant {
     return parseInt(response) || 1;
   }
 }
+
+export type AssistantType = {
+  apiKey: string;
+  apiUrl?: string;
+  apiModel?: string;
+};
 
 export default Assistant;

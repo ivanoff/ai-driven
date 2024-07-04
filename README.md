@@ -1,10 +1,8 @@
 # ai-driven
 
-An AI-powered content analysis and moderation toolkit using Claude API.
+`ai-driven` is a TypeScript module that provides easy-to-use functions for **content moderation**, **text translation**, and **image analysis**.
 
-## Description
-
-`ai-driven` is a TypeScript module that provides easy-to-use functions for content moderation, text translation, and image analysis. It leverages the power of Claude AI to perform various tasks such as:
+It leverages the power of Claude AI to perform various tasks such as:
 
 - Text translation
 - Offensive language detection
@@ -12,24 +10,63 @@ An AI-powered content analysis and moderation toolkit using Claude API.
 - Violence detection in images
 - Pornographic content detection in images
 
+## Example
+
+### API Key
+
+To use this library, you'll need an API key. You can obtain one from the Anthropic console:
+[https://console.anthropic.com/settings/keys](https://console.anthropic.com/settings/keys)
+
+### A Basic Example
+
+```typescript
+import Assistant from 'ai-driven';
+
+const assistant = new Assistant({ apiKey: 'your_api_key_here' });
+
+const translatedText = await assistant.translateText('Hello, world!', 'it');
+
+console.log('Translated text:', translatedText); // => 
+```
+
 ## Installation
 
 To install the `ai-driven` module, run the following command:
 
 ```bash
-npm install ai-driven
+npm i -S ai-driven
 ```
+
+Here's an improved version of the setup instructions, written as a native English-speaking programmer would:
 
 ## Setup
 
-1. Create a `.env` file in the root of your project.
-2. Add your Claude API key (required) and URL with Model to the `.env` file:
+You can configure the assistant in two ways:
+
+### Option 1: Direct Initialization
+
+Provide the configuration when creating the assistant:
+
+```typescript
+const assistant = new Assistant({
+  apiKey: 'your_api_key_here',
+  apiUrl: 'https://api.anthropic.com/v1/messages', // optional
+  apiModel: 'claude-3-haiku-20240307' // optional
+});
+```
+
+### Option 2: Using Environment Variables
+
+1. Create a `.env` file in your project's root directory.
+2. Add the following variables to the `.env` file:
 
 ```
 CLAUDE_API_KEY=your_api_key_here
 CLAUDE_API_URL=https://api.anthropic.com/v1/messages
 CLAUDE_API_MODEL=claude-3-opus-20240229
 ```
+
+The assistant will automatically use these environment variables if no configuration is provided during initialization.
 
 ## Usage
 
@@ -40,7 +77,7 @@ import Assistant from 'ai-driven';
 import fs from 'fs/promises';
 
 async function main() {
-  const assistant = new Assistant();
+  const assistant = new Assistant({ apiKey: 'your_api_key_here' });
 
   // Translate text
   const translatedText = await assistant.translateText('Hello, world!', 'it');
@@ -93,3 +130,7 @@ This module requires a valid Claude API key to function. Ensure you have the nec
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
+
+## Created by
+
+Dimitry Ivanov <2@ivanoff.org.ua> # curl -A cv ivanoff.org.ua

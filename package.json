@@ -1,10 +1,10 @@
 {
   "name": "ai-driven",
-  "version": "0.1.1",
+  "version": "1.0.1",
   "license": "MIT",
   "author": "Dimitry Ivanov <2@ivanoff.org.ua> # curl -A cv ivanoff.org.ua",
-  "description": "AI-Driven Assistant with zero dependencies",
-  "keywords": ["ai", "assistant"],
+  "description": "AI-driven tool for translation, text moderation, and sensitive image detection.",
+  "keywords": ["ai", "translation", "translate text", "text moderation", "sensitive image detection"],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
@@ -12,5 +12,9 @@
   },
   "devDependencies": {
     "@types/node": "^20.14.9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ivanoff/ai-driven.git"
   }
 }

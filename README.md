@@ -38,8 +38,6 @@ To install the `ai-driven` module, run the following command:
 npm i -S ai-driven
 ```
 
-Here's an improved version of the setup instructions, written as a native English-speaking programmer would:
-
 ## Setup
 
 You can configure the assistant in two ways:

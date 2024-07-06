@@ -1,8 +1,36 @@
 ![ai-driven](./assets/logo.png)
 
-**ai-driven** is a module that harnesses the power of `Claude AI` to offer a comprehensive suite of natural language processing, computer vision, and audio analysis functions.
+`ai-driven` is a module that leverages `Claude AI` to provide a comprehensive suite of natural language processing and computer vision functions. It offers easy-to-use methods ([API Methods list](#api-methods)) for a wide range of tasks including:
 
-It provides easy-to-use methods for tasks ranging from content moderation, text translation, and sentiment analysis to image captioning, object detection, and speech-to-text conversion, simplifying the integration of advanced AI capabilities into applications.
+- **Text Processing**:
+  - Content moderation
+  - Text translation
+  - Language detection
+  - Grammar and spelling correction
+  - Text summarization
+  - Text generation
+  - Text paraphrasing
+  - Text classification
+  - Keyword extraction
+  - Named Entity Recognition (NER)
+  - Sentiment analysis
+  - Emotion detection in text
+  - Question answering
+
+- **Image Analysis**:
+  - Image captioning
+  - Optical Character Recognition (OCR)
+  - Object detection
+  - Object search
+  - Facial expression analysis
+  - Violence detection
+  - Pornography detection
+
+- **Audio Processing**:
+  - Emotion detection in voice
+  - Speech-to-text conversion
+
+This versatile module simplifies complex AI tasks, making it easier for developers to integrate advanced AI capabilities into their applications.
 
 ## Example
 

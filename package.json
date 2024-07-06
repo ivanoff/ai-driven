@@ -1,10 +1,40 @@
 {
   "name": "ai-driven",
-  "version": "2.0.2",
+  "version": "3.0.2",
   "license": "MIT",
   "author": "Dimitry Ivanov <2@ivanoff.org.ua> # curl -A cv ivanoff.org.ua",
   "description": "AI-driven tool for translation, summarization, text moderation, and sensitive image detection.",
-  "keywords": ["ai", "translation", "translate text", "text moderation", "sensitive image detection"],
+  "keywords": [
+    "ai",
+    "Translation",
+    "Translate text",
+    "Text moderation",
+    "Language detection",
+    "Grammar and spelling correction",
+    "Text Summarization",
+    "Text Generation",
+    "Text paraphrasing",
+    "Text classification",
+    "Keyword extraction",
+    "Named Entity Recognition",
+    "NER",
+    "Sentiment Analysis",
+    "Offensive language detection",
+    "Profanity checking",
+    "Emotion Detection",
+    "Question Answering",
+    "Image Captioning",
+    "Optical Character Recognition",
+    "OCR",
+    "Object Detection",
+    "Object Detection in Images",
+    "Search Object in Images",
+    "Violence detection in Images",
+    "Pornographic detection in Images",
+    "Facial expression analysis in images",
+    "Emotion Detection in Voice",
+    "Speech-to-text conversion"
+  ],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
@@ -16,5 +46,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/ivanoff/ai-driven.git"
-  }
+  },
+  "files": [
+    "dist/**",
+    "src/**"
+  ]
 }

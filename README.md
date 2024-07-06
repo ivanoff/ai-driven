@@ -1,8 +1,6 @@
 ![ai-driven](./assets/logo.png)
 
-# ai-driven
-
-`ai-driven` is a TypeScript module that harnesses the power of Claude AI to offer a comprehensive suite of natural language processing, computer vision, and audio analysis functions.
+**ai-driven** is a module that harnesses the power of `Claude AI` to offer a comprehensive suite of natural language processing, computer vision, and audio analysis functions.
 
 It provides easy-to-use methods for tasks ranging from content moderation, text translation, and sentiment analysis to image captioning, object detection, and speech-to-text conversion, simplifying the integration of advanced AI capabilities into applications.
 
@@ -19,6 +17,18 @@ console.log(translatedText); // => Ciao, mondo!
 ```
 
 You can find more usage examples [here](./example.ts)
+
+#### How much does it cost?
+
+Currently, the most affordable model costs `$0.25` per million tokens (MTok) for input and `$1.25` per MTok for output. More details [here](https://docs.anthropic.com/en/docs/about-claude/models)
+
+If you only use the text examples from [example.ts](./example.ts), you'll consume `739 tokens for input` and `384 tokens for output`, resulting in a cost of approximately `$0.0007`.
+
+However, *this cost will increase significantly if you use image and audio processing, as it depends entirely on the size of the files you're working with—larger files incur higher costs*.
+
+#### Rate Limits
+
+For the most up-to-date information on rate limits, please refer to the [Rate Limits page](https://console.anthropic.com/settings/limits)
 
 #### API Key
 

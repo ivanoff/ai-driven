@@ -1,4 +1,4 @@
-![ai-driven](./assets/logo.jpg)
+![ai-driven](./assets/logo.png)
 
 # ai-driven
 
@@ -219,10 +219,10 @@ The `ai-driven` module provides the following methods:
     - Locates a specific object within the image based on the user query.
 
 19. `checkImageForViolence(imageBuffer: Buffer): Promise<number>`
-   - Analyzes the given image for violent content and returns a score from 1 to 10, where 1 is very peaceful and 10 is extremely violent.
+    - Analyzes the given image for violent content and returns a score from 1 to 10, where 1 is very peaceful and 10 is extremely violent.
 
 20. `checkImageForPornography(imageBuffer: Buffer): Promise<number>`
-   - Analyzes the given image for pornographic content and returns a score from 1 to 10, where 1 is not pornographic at all and 10 is extremely pornographic.
+    - Analyzes the given image for pornographic content and returns a score from 1 to 10, where 1 is not pornographic at all and 10 is extremely pornographic.
 
 21. `analyzeFacialExpression(imageBuffer: Buffer): Promise<Record<string, string>>`
     - Recognizes and categorizes facial expressions in the given image to determine emotions.

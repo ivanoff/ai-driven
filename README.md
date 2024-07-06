@@ -201,75 +201,31 @@ main().catch(console.error);
 
 The `ai-driven` module provides the following methods:
 
-1. `translateText(text: string, lang?: string, context?: string ): Promise<string>`
-   - Translates the given text to selected language (English by default).
-
-2. `detectLanguage(text: string): Promise<string>`
-   - Detects the language of the provided text.
-
-3. `correctText(text: string): Promise<string>`
-   - Corrects grammar and spelling errors in the given text.
-
-4. `summarizeText(text: string, maxWords?: number): Promise<string>`
-   - Generates a summary of the provided text, optionally limiting the summary length.
-
-5. `generateText(prompt: string, maxWords?: number): Promise<string>`
-   - Creates coherent and contextually relevant text based on the given prompt.
-
-6. `paraphraseText(text: string): Promise<string>`
-   - Rewrites the given text to convey the same meaning using different words and sentence structures.
-
-7. `classifyText(text: string, categories: string[]): Promise<string>`
-   - Categorizes the given text into one of the predefined classes or topics.
-
-8. `extractKeywords(text: string, count?: number): Promise<string[]>`
-   - Identifies and extracts the most important or relevant words or phrases from the text.
-
-9. `extractEntities(text: string): Promise<Record<string, string[]>>`
-   - Extracts named entities (names, dates, locations, organizations) from the text.
-
-10. `analyzeSentiment(text: string): Promise<string>`
-    - Detects the sentiment (positive, negative, neutral) in the given text.
-
-11. `checkForOffensiveLanguage(text: string): Promise<number>`
-   - Checks the given text for offensive language and returns a score from 1 to 10, where 1 is very peaceful and 10 is extremely aggressive.
-
-12. `checkForProfanity(text: string): Promise<number>`
-   - Checks the given text for profanity and returns a score from 1 to 10, where 1 is very clean and 10 is extremely profane.
-
-13. `detectEmotion(text: string): Promise<string>`
-    - Identifies specific emotions (e.g., joy, sadness, anger) in the given text.
-
-14. `answerQuestion(question: string, context: string): Promise<string>`
-    - Provides an accurate answer to the question based on the given context.
-
-
-15. `captionImage(imageBuffer: Buffer): Promise<string>`
-    - Generates a descriptive caption for the given image.
-
-16. `extractTextFromImage(imageBuffer: Buffer): Promise<string>`
-    - Extracts text from images of documents or handwritten notes.
-
-17. `detectObjectsInImage(imageBuffer: Buffer): Promise<Record<string, number[]>>`
-    - Identifies and locates objects within the given image.
-
-18. `searchObjectInImage(imageBuffer: Buffer, objectQuery: string): Promise<number[] | null>`
-    - Locates a specific object within the image based on the user query.
-
-19. `checkImageForViolence(imageBuffer: Buffer): Promise<number>`
-    - Analyzes the given image for violent content and returns a score from 1 to 10, where 1 is very peaceful and 10 is extremely violent.
-
-20. `checkImageForPornography(imageBuffer: Buffer): Promise<number>`
-    - Analyzes the given image for pornographic content and returns a score from 1 to 10, where 1 is not pornographic at all and 10 is extremely pornographic.
-
-21. `analyzeFacialExpression(imageBuffer: Buffer): Promise<Record<string, string>>`
-    - Recognizes and categorizes facial expressions in the given image to determine emotions.
-
-22. `detectEmotionInVoice(audioBuffer: Buffer): Promise<string>`
-    - Identifies specific emotions (e.g., joy, sadness, anger) in the given voice data.
-
-23. `speechToText(audioBuffer: Buffer): Promise<string>`
-    - Transcribes spoken words from the given audio recording into written text.
+| Method | Description | Parameters | Return Promise Type |
+|--------|-------------|------------|-------------|
+| `translateText` | Translates the given text to selected language (English by default) | `text: string, lang?: string, context?: string` | `string` |
+| `detectLanguage` | Detects the language of the provided text | `text: string` | `string` |
+| `correctText` | Corrects grammar and spelling errors in the given text | `text: string` | `string` |
+| `summarizeText` | Generates a summary of the provided text, optionally limiting the summary length | `text: string, maxWords?: number` | `string` |
+| `generateText` | Creates coherent and contextually relevant text based on the given prompt | `prompt: string, maxWords?: number` | `string` |
+| `paraphraseText` | Rewrites the given text to convey the same meaning using different words and sentence structures | `text: string` | `string` |
+| `classifyText` | Categorizes the given text into one of the predefined classes or topics | `text: string, categories: string[]` | `string` |
+| `extractKeywords` | Identifies and extracts the most important or relevant words or phrases from the text | `text: string, count?: number` | `string[]` |
+| `extractEntities` | Extracts named entities (names, dates, locations, organizations) from the text | `text: string` | `Record<string, string[]>` |
+| `analyzeSentiment` | Detects the sentiment (positive, negative, neutral) in the given text | `text: string` | `string` |
+| `checkForOffensiveLanguage` | Checks the given text for offensive language and returns a score from 1 to 10 | `text: string` | `number` |
+| `checkForProfanity` | Checks the given text for profanity and returns a score from 1 to 10 | `text: string` | `number` |
+| `detectEmotion` | Identifies specific emotions (e.g., joy, sadness, anger) in the given text | `text: string` | `string` |
+| `answerQuestion` | Provides an accurate answer to the question based on the given context | `question: string, context: string` | `string` |
+| `captionImage` | Generates a descriptive caption for the given image | `imageBuffer: Buffer` | `string` |
+| `extractTextFromImage` | Extracts text from images of documents or handwritten notes | `imageBuffer: Buffer` | `string` |
+| `detectObjectsInImage` | Identifies and locates objects within the given image | `imageBuffer: Buffer` | `Record<string, number[]>` |
+| `searchObjectInImage` | Locates a specific object within the image based on the user query | `imageBuffer: Buffer, objectQuery: string` | `number[] \| null` |
+| `checkImageForViolence` | Analyzes the given image for violent content and returns a score from 1 to 10 | `imageBuffer: Buffer` | `number` |
+| `checkImageForPornography` | Analyzes the given image for pornographic content and returns a score from 1 to 10 | `imageBuffer: Buffer` | `number` |
+| `analyzeFacialExpression` | Recognizes and categorizes facial expressions in the given image to determine emotions | `imageBuffer: Buffer` | `Record<string, string>` |
+| `detectEmotionInVoice` | Identifies specific emotions in the given voice data | `audioBuffer: Buffer` | `string` |
+| `speechToText` | Transcribes spoken words from the given audio recording into written text | `audioBuffer: Buffer` | `string` |
 
 ## Note
 

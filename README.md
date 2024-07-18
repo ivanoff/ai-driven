@@ -1,6 +1,14 @@
 ![ai-driven](./assets/logo.png)
 
-`ai-driven` is a non-dependency module that leverages both `Claude AI` and `OpenAI's GPT` to provide a comprehensive suite of natural language processing and computer vision functions. This dual integration allows users to harness the unique strengths of both AI platforms, offering a wider range of capabilities and the ability to choose the most suitable AI model for specific tasks. 
+`ai-driven` is a versatile module that integrates two cutting-edge AI platforms: `Claude AI` and `OpenAI's GPT`. This powerful combination offers a wide array of natural language processing and computer vision capabilities.
+
+**Key features include:**
+- Advanced text analysis and generation
+- Comprehensive image recognition and description
+- Multi-language translation and interpretation
+- Sophisticated question-answering systems
+
+[List of all features](#all-features)
 
 ## Example
 
@@ -20,7 +28,7 @@ You can find more usage examples [here](./example.ts)
 
 - [Example](#example)
 - [Table of Contents](#table-of-contents)
-- [Capabilities](#capabilities)
+- [All Features](#all-features)
 - [Installation](#installation)
 - [Setup](#setup)
   - [Option 1: Direct Initialization](#option-1-direct-initialization)
@@ -56,7 +64,7 @@ You can find more usage examples [here](./example.ts)
 - [License](#license)
 - [Created by](#created-by)
 
-## Capabilities
+## All Features
 
 `ai-driven` offers easy-to-use methods ([API Methods list](#api-methods)) for a wide range of tasks including:
 

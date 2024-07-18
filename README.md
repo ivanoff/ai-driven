@@ -1,15 +1,24 @@
 ![ai-driven](./assets/logo.png)
 
-`ai-driven` is a module that leverages both `Claude AI` and `OpenAI's GPT` to provide a comprehensive suite of natural language processing and computer vision functions. This dual integration allows users to harness the unique strengths of both AI platforms, offering a wider range of capabilities and the ability to choose the most suitable AI model for specific tasks. It offers easy-to-use methods ([API Methods list](#api-methods)) for a wide range of tasks including:
+`ai-driven` is a module that leverages both `Claude AI` and `OpenAI's GPT` to provide a comprehensive suite of natural language processing and computer vision functions. This dual integration allows users to harness the unique strengths of both AI platforms, offering a wider range of capabilities and the ability to choose the most suitable AI model for specific tasks. 
 
-- **Free-form ask** [[more](#free-form-ask)]
-  - return only the answer (by default) or answer with AI comments
-  - answer in the specified language
-  - act as a specific role [[list of roles](#roles)]
-  - result in response format [[response formats](#response-formats)]
-  - use a specific tone [[list of tones](#tones)]
-  - apply a particular writing style [[list of writing styles](#writing-styles)]
-  - convey a specific emotion [[list of emotions](#emotions)]
+## Example
+
+```typescript
+import { Assistant } from 'ai-driven';
+
+const assistant = new Assistant({ apiVendor: 'OpenAI', apiKey: 'your_api_key_here' });
+
+const translatedText = await assistant.translateText('Hello, world!', 'it');
+
+console.log(translatedText); // => Ciao, mondo!
+```
+
+You can find more usage examples [here](./example.ts)
+
+## Brief list of methods
+
+`ai-driven` offers easy-to-use methods ([API Methods list](#api-methods)) for a wide range of tasks including:
 
 - **Text Processing**:
   - Content moderation
@@ -39,49 +48,16 @@
   - Emotion detection in voice
   - Speech-to-text conversion
 
+- **Free-form ask** [[more](#free-form-ask)]
+  - return only the answer (by default) or answer with AI comments
+  - show answer in the specified language
+  - act as a specific role [[list of roles](#roles)]
+  - result in response format [[response formats](#response-formats)]
+  - use a specific tone [[list of tones](#tones)]
+  - apply a particular writing style [[list of writing styles](#writing-styles)]
+  - convey a specific emotion [[list of emotions](#emotions)]
+
 This versatile module simplifies complex AI tasks, making it easier for developers to integrate advanced AI capabilities into their applications.
-
-## Examples
-
-You can find more usage examples [here](./example.ts)
-
-### Translation example
-
-```typescript
-import { Assistant } from 'ai-driven';
-
-const assistant = new Assistant({ apiVendor: 'OpenAI', apiKey: 'your_api_key_here' });
-
-const translatedText = await assistant.translateText('Hello, world!', 'it');
-
-console.log(translatedText); // => Ciao, mondo!
-```
-
-### Free-form ask example
-
-```typescript
-import { Assistant } from 'ai-driven';
-
-const assistant = new Assistant({ apiVendor: 'OpenAI', apiKey: 'your_api_key_here' });
-
-const result = await assistant.ask(
-  'bubble sort function',
-  {
-    format: 'TypeScript',
-    answerOnly: false,
-    language: 'en',
-    role: 'Fitness Trainer',
-    tone: 'Informative',
-    style: 'Poetic',
-    emotion: 'Love',
-    context: 'Sort colors',
-  }
-);
-
-console.log(result);
-```
-
-See result of this example [[here](#free-form-ask-result)]
 
 ## Vendors
 
@@ -340,18 +316,82 @@ Method: `ask`
 
 This method is used to ask a question with customizable options.
 
-#### Signature:
+#### Free-form ask example
+
+```typescript
+import { Assistant } from 'ai-driven';
+
+const assistant = new Assistant({ apiVendor: 'OpenAI', apiKey: 'your_api_key_here' });
+
+const result = await assistant.ask(
+  'bubble sort function',
+  {
+    format: 'TypeScript',
+    answerOnly: false,
+    language: 'en',
+    role: 'Fitness Trainer',
+    tone: 'Informative',
+    style: 'Poetic',
+    emotion: 'Love',
+    context: 'Sort colors',
+  }
+);
+
+console.log(result);
+```
+
+##### Result
+
+Bubble Sort Function for Sorting Colors
+
+Ah, the dance of colors, a captivating sight,
+Where hues embrace, in a harmonious flight.
+Let us embark on a journey, with grace and might,
+To sort these vibrant shades, with all our might.
+
+Fitness Trainer's Perspective:
+Just as our bodies crave a well-ordered routine,
+Our colors, too, deserve a rhythm, serene.
+Through the Bubble Sort, we'll find the way,
+To arrange these hues, in a beautiful display.
+
+With each gentle swap, a transformation unfolds,
+Allowing the spectrum to shine, its story untold.
+From the lightest hue to the darkest hue,
+We'll navigate this dance, with love anew.
+
+So, let's dive in, and embrace the flow,
+As we sort these colors, with a rhythmic glow.
+For in this process, we'll find the art,
+Of bringing order to the canvas of our heart.
+
+```typescript
+function bubbleSort(colors: string[]): string[] {
+  const n = colors.length;
+  for (let i = 0; i < n - 1; i++) {
+      for (let j = 0; j < n - i - 1; j++) {
+          if (colors[j] > colors[j + 1]) {
+              // Swap colors[j] and colors[j+1]
+              [colors[j], colors[j + 1]] = [colors[j + 1], colors[j]];
+          }
+      }
+  }
+  return colors;
+}
+```
+
+#### Signature
 
 ```typescript
 public async ask(question: string, options?: askOptionsType): Promise<string>
 ```
 
-#### Parameters:
+#### Parameters
 
 - `question` (string): The question to ask.
 - `options` (askOptionsType): Optional parameters to customize the question.
 
-#### `askOptionsType` Interface:
+#### `askOptionsType` Interface
 
 - `answerOnly` (boolean): Return only the answer. Default is `true`.
 - `language` (string): Answer in the specified language.
@@ -731,48 +771,6 @@ public async ask(question: string, options?: askOptionsType): Promise<string>
 - Indifference
 - Resentment
 - Longing
-
-## Results of examples
-
-### Free-form ask result
-
-Bubble Sort Function for Sorting Colors
-
-Ah, the dance of colors, a captivating sight,
-Where hues embrace, in a harmonious flight.
-Let us embark on a journey, with grace and might,
-To sort these vibrant shades, with all our might.
-
-Fitness Trainer's Perspective:
-Just as our bodies crave a well-ordered routine,
-Our colors, too, deserve a rhythm, serene.
-Through the Bubble Sort, we'll find the way,
-To arrange these hues, in a beautiful display.
-
-With each gentle swap, a transformation unfolds,
-Allowing the spectrum to shine, its story untold.
-From the lightest hue to the darkest hue,
-We'll navigate this dance, with love anew.
-
-So, let's dive in, and embrace the flow,
-As we sort these colors, with a rhythmic glow.
-For in this process, we'll find the art,
-Of bringing order to the canvas of our heart.
-
-```typescript
-function bubbleSort(colors: string[]): string[] {
-  const n = colors.length;
-  for (let i = 0; i < n - 1; i++) {
-      for (let j = 0; j < n - i - 1; j++) {
-          if (colors[j] > colors[j + 1]) {
-              // Swap colors[j] and colors[j+1]
-              [colors[j], colors[j + 1]] = [colors[j + 1], colors[j]];
-          }
-      }
-  }
-  return colors;
-}
-```
 
 ## Note
 

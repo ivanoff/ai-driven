@@ -71,12 +71,31 @@ To use this library, you'll need an API key. You can obtain one from the OpenAI 
 
 #### List of Models
 
-- gpt-4o
-- gpt-4-turbo
-- gpt-4-32k-0613
-- gpt-4-0613
-- gpt-3.5-turbo-0613
-- gpt-3.5-turbo
+- **GPT Models**:
+  - `gpt-4`
+  - `gpt-4-turbo`
+  - `gpt-4-vision-preview`
+  - `gpt-4o`
+  - `gpt-4-32k`
+  - `gpt-3.5-turbo`
+  - `gpt-3.5-turbo-16k`
+  - `gpt-3.5-turbo-instruct`
+
+- **DALL-E Models**:
+  - `dall-e-3`
+  - `dall-e-2`
+
+- **Whisper Models**:
+  - `whisper`
+
+- **Embedding Models**:
+  - `text-embedding-3-large`
+  - `text-embedding-3-small`
+  - `text-embedding-ada-002`
+
+- **Text-to-Speech Models**:
+  - `tts-1`
+  - `tts-1-hd`
 
 More about models: [https://platform.openai.com/docs/models](https://platform.openai.com/docs/models)
 
@@ -101,9 +120,9 @@ To use this library, you'll need an API key. You can obtain one from the Anthrop
 
 #### List of Models
 
-- claude-3-5-sonnet-20240620	
-- claude-3-opus-20240229	
-- claude-3-sonnet-20240229	
+- claude-3-5-sonnet-20240620
+- claude-3-opus-20240229
+- claude-3-sonnet-20240229
 - claude-3-haiku-20240307
 
 More about models: [https://docs.anthropic.com/en/docs/about-claude/models#model-names](https://docs.anthropic.com/en/docs/about-claude/models#model-names)

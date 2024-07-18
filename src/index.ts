@@ -1,7 +1,7 @@
 class Assistant {
   private apiKey: string;
-  private apiUrl: string;
-  private apiModel: string;
+  private apiUrl: VendorsUrlType;
+  private apiModel: VendorsModelType;
   private isOpenAI: boolean;
 
   constructor(options?: AssistantType) {
@@ -22,8 +22,8 @@ class Assistant {
     const defaultModel = this.isOpenAI ? 'gpt-3.5-turbo' : 'claude-3-haiku-20240307';
 
     this.apiKey = apiKey || (this.isOpenAI ? OPENAI_API_KEY : CLAUDE_API_KEY) || '';
-    this.apiUrl = apiUrl || (this.isOpenAI ? OPENAI_API_URL : CLAUDE_API_URL) || defaultUrl;
-    this.apiModel = apiModel || (this.isOpenAI ? OPENAI_API_MODEL : CLAUDE_API_MODEL) || defaultModel;
+    this.apiUrl = apiUrl || (this.isOpenAI ? OPENAI_API_URL : CLAUDE_API_URL) as VendorsUrlType || defaultUrl as VendorsUrlType;
+    this.apiModel = apiModel || (this.isOpenAI ? OPENAI_API_MODEL : CLAUDE_API_MODEL) as VendorsModelType || defaultModel as VendorsModelType;
 
     if (!this.apiKey) throw new Error('API key is not defined. You can obtain one from the OpenAI dashboard: https://platform.openai.com/settings/profile?tab=api-keys or the Anthropic console: https://console.anthropic.com/settings/keys');
   }
@@ -224,11 +224,37 @@ class Assistant {
   }
 }
 
+export type VendorsType = 'OpenAI' | 'Claude';
+
+export type VendorsUrlType = 'https://api.openai.com/v1/chat/completions' | 'https://api.anthropic.com/v1/messages';
+
+export type VendorsModelType = 'gpt-4o'
+  | 'gpt-4o-turbo'
+  | 'gpt-4'
+  | 'gpt-4-turbo'
+  | 'gpt-4-vision-preview'
+  | 'gpt-4-32k'
+  | 'gpt-3.5-turbo'
+  | 'gpt-3.5-turbo-16k'
+  | 'gpt-3.5-turbo-instruct'
+  | 'dall-e-3'
+  | 'dall-e-2'
+  | 'whisper'
+  | 'text-embedding-3-large'
+  | 'text-embedding-3-small'
+  | 'text-embedding-ada-002'
+  | 'tts-1'
+  | 'tts-1-hd'
+  | 'claude-3-5-sonnet-20240620'
+  | 'claude-3-opus-20240229'
+  | 'claude-3-sonnet-20240229'
+  | 'claude-3-haiku-20240307';
+
 export type AssistantType = {
   apiKey: string;
-  apiVendor: 'OpenAI' | 'Claude';
-  apiUrl?: string;
-  apiModel?: string;
+  apiVendor: VendorsType;
+  apiUrl?: VendorsUrlType;
+  apiModel?: VendorsModelType;
 };
 
 export { Assistant };

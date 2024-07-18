@@ -4,6 +4,22 @@ import fs from 'fs/promises';
 async function main() {
   const assistant = new Assistant();
 
+  // Free-form ask
+  const result = await assistant.ask(
+    'bubble sort function',
+    {
+      format: 'TypeScript',
+      answerOnly: false,
+      language: 'en',
+      role: 'Fitness Trainer',
+      tone: 'Informative',
+      style: 'Poetic',
+      emotion: 'Love',
+      context: 'Sort colors',
+    }
+  );
+  console.log('Bubble sort Love Poem by Fitness Trainer:', result);
+
   // Example of using the translation function
   const translatedText = await assistant.translateText('Bonjour le monde!', 'it');
   console.log('Translated text:', translatedText);

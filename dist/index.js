@@ -1,4 +1,18 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Assistant = void 0;
 class Assistant {
@@ -55,6 +69,20 @@ class Assistant {
     }
     async sendMessage(message) {
         return this.isOpenAI ? this.sendToGPT(message) : this.sendToClaude(message);
+    }
+    async ask(question, options) {
+        const { answerOnly, language, context, role, task, format, tone, style, emotion } = options || {};
+        const c = context && `In ${context} context`;
+        const l = language && `Answer in ${language} language`;
+        const o = tone && `In ${tone} tone`;
+        const s = style && `Use a ${style} style`;
+        const e = emotion && `Use ${emotion} emotion`;
+        const f = format && `Response in ${format} format`;
+        const a = answerOnly !== false && `Return only answer`;
+        const r = role && `Act as a ${role}`;
+        const t = task && `Create a ${task}`;
+        const message = [question, c, l, o, s, e, f, a, r, t].filter(Boolean).join('. ');
+        return this.sendMessage(message);
     }
     async translateText(text, lang, context) {
         const l = lang || 'English';
@@ -179,4 +207,5 @@ class Assistant {
     }
 }
 exports.Assistant = Assistant;
+__exportStar(require("./types"), exports);
 //# sourceMappingURL=index.js.map

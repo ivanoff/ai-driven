@@ -2,6 +2,15 @@
 
 `ai-driven` is a module that leverages both `Claude AI` and `OpenAI's GPT` to provide a comprehensive suite of natural language processing and computer vision functions. This dual integration allows users to harness the unique strengths of both AI platforms, offering a wider range of capabilities and the ability to choose the most suitable AI model for specific tasks. It offers easy-to-use methods ([API Methods list](#api-methods)) for a wide range of tasks including:
 
+- **Free-form ask** [[more](#free-form-ask)]
+  - return only the answer (by default) or answer with AI comments
+  - answer in the specified language
+  - act as a specific role [[list of roles](#roles)]
+  - result in response format [[response formats](#response-formats)]
+  - use a specific tone [[list of tones](#tones)]
+  - apply a particular writing style [[list of writing styles](#writing-styles)]
+  - convey a specific emotion [[list of emotions](#emotions)]
+
 - **Text Processing**:
   - Content moderation
   - Text translation
@@ -32,19 +41,49 @@
 
 This versatile module simplifies complex AI tasks, making it easier for developers to integrate advanced AI capabilities into their applications.
 
-## Example
+## Examples
+
+You can find more usage examples [here](./example.ts)
+
+### Translation example
 
 ```typescript
 import { Assistant } from 'ai-driven';
 
-const assistant = new Assistant({ apiKey: 'your_api_key_here', apiVendor: 'OpenAI' });
+const assistant = new Assistant({ apiVendor: 'OpenAI', apiKey: 'your_api_key_here' });
 
 const translatedText = await assistant.translateText('Hello, world!', 'it');
 
 console.log(translatedText); // => Ciao, mondo!
 ```
 
-You can find more usage examples [here](./example.ts)
+### Free-form ask example
+
+```typescript
+import { Assistant } from 'ai-driven';
+
+const assistant = new Assistant({ apiVendor: 'OpenAI', apiKey: 'your_api_key_here' });
+
+const result = await assistant.ask(
+  'bubble sort function',
+  {
+    format: 'TypeScript',
+    answerOnly: false,
+    language: 'en',
+    role: 'Fitness Trainer',
+    tone: 'Informative',
+    style: 'Poetic',
+    emotion: 'Love',
+    context: 'Sort colors',
+  }
+);
+
+console.log(result);
+```
+
+See result of this example [[here](#free-form-ask-result)]
+
+## Vendors
 
 ### OpenAI Vendor
 
@@ -268,6 +307,7 @@ The `ai-driven` module provides the following methods:
 
 | Method | Description | Parameters | Return Promise Type |
 |--------|-------------|------------|-------------|
+| `ask` | Ask a question with customizable options [[more](#free-form-ask)] | `text: string, options?: askOptionsType` | `string` |
 | `translateText` | Translates the given text to selected language (English by default) | `text: string, lang?: string, context?: string` | `string` |
 | `detectLanguage` | Detects the language of the provided text | `text: string` | `string` |
 | `correctText` | Corrects grammar and spelling errors in the given text | `text: string` | `string` |
@@ -291,6 +331,448 @@ The `ai-driven` module provides the following methods:
 | `analyzeFacialExpression` | Recognizes and categorizes facial expressions in the given image to determine emotions | `imageBuffer: Buffer` | `Record<string, string>` |
 | `detectEmotionInVoice` | Identifies specific emotions in the given voice data (not supported by OpenAI vendor) | `audioBuffer: Buffer` | `string` |
 | `speechToText` | Transcribes spoken words from the given audio recording into written text (not supported by OpenAI vendor) | `audioBuffer: Buffer` | `string` |
+
+### Free-form ask
+
+Method: `ask`
+
+#### Description:
+
+This method is used to ask a question with customizable options.
+
+#### Signature:
+
+```typescript
+public async ask(question: string, options?: askOptionsType): Promise<string>
+```
+
+#### Parameters:
+
+- `question` (string): The question to ask.
+- `options` (askOptionsType): Optional parameters to customize the question.
+
+#### `askOptionsType` Interface:
+
+- `answerOnly` (boolean): Return only the answer. Default is `true`.
+- `language` (string): Answer in the specified language.
+- `context` (string): In the specified context.
+- `role` (string): Act as a specific role.
+- `task` (string): Create a specific task.
+- `format` (string): Response format.
+- `tone` (string): Tone of the response.
+- `style` (string): Style of writing.
+- `emotion` (string): Emotion to convey.
+
+#### Roles
+
+- Translator
+- Programmer
+- Data Scientist
+- Analyst
+- Researcher
+- Teacher
+- Tutor
+- Historian
+- Scientist
+- Mathematician
+- Statistician
+- Financial Advisor
+- Consultant
+- Coach
+- Mentor
+- Content Writer
+- Editor
+- Proofreader
+- Engineer
+- Architect
+- Designer
+- Developer
+- Marketer
+- SEO Specialist
+- Strategist
+- Project Manager
+- Product Manager
+- Customer Support
+- Technical Support
+- Salesperson
+- Psychologist
+- Therapist
+- Counselor
+- Librarian
+- Legal Advisor
+- Medical Advisor
+- Chemist
+- Physicist
+- Biologist
+- Environmentalist
+- Economist
+- Entrepreneur
+- Business Analyst
+- Investor
+- Accountant
+- Auditor
+- Chef
+- Bartender
+- Nutritionist
+- Fitness Trainer
+- Artist
+- Musician
+- Composer
+- Poet
+- Novelist
+- Critic
+- Reviewer
+
+#### Tasks
+
+- Essay
+- Summary
+- Report
+- Research paper
+- Presentation
+- Speech
+- Lesson plan
+- Tutorial
+- Documentation
+- Code snippets
+- Data analysis
+- Business plan
+- Marketing plan
+- Article
+- Blog post
+- Product review
+- User manual
+- Test cases
+- Screenplay
+- Poem
+- Short story
+- Character profile
+- Letter
+- Resume
+- Cover letter
+- Recommendation letter
+- Project proposal
+- Interview questions
+- Survey
+- Quiz
+- News article
+- Social media content
+- Email template
+- FAQ
+- Roadmap
+- Checklist
+- Recipe
+- Meal plan
+- Workout plan
+- Book summary
+- Annotated bibliography
+- Financial forecast
+- Grant proposal
+- SWOT analysis
+- Strategic plan
+- Case study
+- Itinerary
+- Script for a podcast
+- Storyboard
+- Press release
+- Content calendar
+- Mind map
+- Business case
+- Product description
+- User story
+- API documentation
+- Compliance report
+- Risk assessment
+- User journey map
+- Technical specification
+- Workflow diagram
+- Competitive analysis
+- Literature review
+- Training module
+- Onboarding plan
+- Executive summary
+- Customer persona
+- Sales pitch
+- White paper
+- Case analysis
+- Investment proposal
+- Financial report
+- Marketing campaign
+- Content strategy
+- Value proposition
+- Partnership proposal
+- Brand guideline
+- Community guideline
+- Action plan
+- Conflict resolution plan
+- Safety protocol
+- Crisis management plan
+- Disaster recovery plan
+- Mission statement
+- Vision statement
+- Core values statement
+- Diversity and inclusion plan
+- Succession plan
+- Employee handbook
+- Operational plan
+- Retention strategy
+- Compensation plan
+- Performance review
+- Employee evaluation
+- Professional development plan
+- Retirement plan
+- Sustainability plan
+- Environmental impact assessment
+- Corporate social responsibility report
+- Governance framework
+- Ethics policy
+- Code of conduct
+- Conflict of interest policy
+- Whistleblower policy
+- Privacy policy
+- Data protection plan
+- Information security policy
+- Digital transformation strategy
+- Technology roadmap
+- IT disaster recovery plan
+- Software requirements specification
+- System architecture
+- Database schema
+- Data migration plan
+- API integration plan
+- Cloud adoption strategy
+- DevOps strategy
+- IT governance framework
+- Enterprise architecture plan
+- Business continuity plan
+- IT service management plan
+- Incident response plan
+- Cybersecurity strategy
+- Network architecture plan
+- Infrastructure as code (IaC) template
+- Deployment plan
+- Monitoring and alerting strategy
+- Software development lifecycle (SDLC) plan
+- User acceptance testing (UAT) plan
+- Change management plan
+- Configuration management plan
+- Release management plan
+- Vendor management plan
+- Procurement strategy
+- Supply chain management plan
+- Logistics plan
+- Inventory management plan
+- Quality control plan
+- Lean manufacturing plan
+- Six sigma plan
+- Total quality management (TQM) plan
+- Maintenance plan
+- Asset management plan
+- Facilities management plan
+- Fleet management plan
+- Energy management plan
+- Waste management plan
+- Water management plan
+- Air quality management plan
+- Noise management plan
+- Land management plan
+- Biodiversity management plan
+- Ecosystem management plan
+- Wildlife management plan
+- Forestry management plan
+- Fisheries management plan
+- Tourism management plan
+- Cultural heritage management plan
+- Community development plan
+- Public health plan
+- Education plan
+- Housing plan
+- Transportation plan
+- Urban planning plan
+- Rural development plan
+- Regional development plan
+- National development plan
+- International development plan
+
+#### Response formats
+
+- plain text
+- JSON
+- HTML
+- XML
+- CSV
+- Markdown
+- Table
+- List
+- CSV
+- YAML
+- LaTeX
+- SQL
+- JavaScript
+- TypeScript
+- Python
+- PHP
+- Java
+- C#
+- C++
+- Ruby
+- Go
+- Swift
+- Kotlin
+- R
+- Perl
+- Shell (Bash)
+- Code snippets
+- Summary
+
+#### Tones
+
+- Friendly
+- Professional
+- Academic
+- Casual
+- Formal
+- Enthusiastic
+- Neutral
+- Concise
+- Detailed
+- Humorous
+- Empathetic
+- Authoritative
+- Informative
+- Encouraging
+- Diplomatic
+- Respectful
+- Analytical
+- Conversational
+- Instructional
+- Matter-of-fact
+
+#### Writing Styles
+
+- Technical
+- Scientific
+- Poetic
+- Narrative
+- Comparative
+- Analytical
+- Descriptive
+- Persuasive
+- Expository
+- Instructional
+- Journalistic
+- Historical
+- Philosophical
+- Legal
+- Medical
+- Business
+- Educational
+- Literary
+- Conversational
+- Socratic (question-based)
+- Summary style
+- Step-by-step guide
+- Pros and cons analysis
+- Hypothetical scenarios
+- Case study approach
+- Mother
+- Father
+- Uncle
+
+#### Emotions
+
+- Happiness
+- Sadness
+- Anger
+- Fear
+- Surprise
+- Disgust
+- Contempt
+- Joy
+- Trust
+- Anticipation
+- Anxiety
+- Shame
+- Guilt
+- Embarrassment
+- Excitement
+- Envy
+- Jealousy
+- Pride
+- Relief
+- Satisfaction
+- Frustration
+- Despair
+- Hope
+- Nostalgia
+- Loneliness
+- Empathy
+- Gratitude
+- Regret
+- Love
+- Hatred
+- Confusion
+- Interest
+- Boredom
+- Contentment
+- Grief
+- Courage
+- Shyness
+- Enthusiasm
+- Nervousness
+- Admiration
+- Disappointment
+- Doubt
+- Optimism
+- Pessimism
+- Relaxation
+- Stress
+- Determination
+- Indifference
+- Resentment
+- Longing
+
+## Results of examples
+
+### Free-form ask result
+
+Bubble Sort Function for Sorting Colors
+
+Ah, the dance of colors, a captivating sight,
+Where hues embrace, in a harmonious flight.
+Let us embark on a journey, with grace and might,
+To sort these vibrant shades, with all our might.
+
+Fitness Trainer's Perspective:
+Just as our bodies crave a well-ordered routine,
+Our colors, too, deserve a rhythm, serene.
+Through the Bubble Sort, we'll find the way,
+To arrange these hues, in a beautiful display.
+
+With each gentle swap, a transformation unfolds,
+Allowing the spectrum to shine, its story untold.
+From the lightest hue to the darkest hue,
+We'll navigate this dance, with love anew.
+
+So, let's dive in, and embrace the flow,
+As we sort these colors, with a rhythmic glow.
+For in this process, we'll find the art,
+Of bringing order to the canvas of our heart.
+
+```typescript
+function bubbleSort(colors: string[]): string[] {
+  const n = colors.length;
+  for (let i = 0; i < n - 1; i++) {
+      for (let j = 0; j < n - i - 1; j++) {
+          if (colors[j] > colors[j + 1]) {
+              // Swap colors[j] and colors[j+1]
+              [colors[j], colors[j + 1]] = [colors[j + 1], colors[j]];
+          }
+      }
+  }
+  return colors;
+}
+```
 
 ## Note
 

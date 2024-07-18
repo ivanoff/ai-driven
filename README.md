@@ -16,7 +16,10 @@ console.log(translatedText); // => Ciao, mondo!
 
 You can find more usage examples [here](./example.ts)
 
+## Table of Contents
+
 - [Example](#example)
+- [Table of Contents](#table-of-contents)
 - [Capabilities](#capabilities)
 - [Installation](#installation)
 - [Setup](#setup)

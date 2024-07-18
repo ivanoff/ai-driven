@@ -32,10 +32,13 @@ declare class Assistant {
     detectEmotionInVoice(audioBuffer: Buffer): Promise<string>;
     speechToText(audioBuffer: Buffer): Promise<string>;
 }
+export type VendorsType = 'OpenAI' | 'Claude';
+export type VendorsUrlType = 'https://api.openai.com/v1/chat/completions' | 'https://api.anthropic.com/v1/messages';
+export type VendorsModelType = 'gpt-4o' | 'gpt-4o-turbo' | 'gpt-4' | 'gpt-4-turbo' | 'gpt-4-vision-preview' | 'gpt-4-32k' | 'gpt-3.5-turbo' | 'gpt-3.5-turbo-16k' | 'gpt-3.5-turbo-instruct' | 'dall-e-3' | 'dall-e-2' | 'whisper' | 'text-embedding-3-large' | 'text-embedding-3-small' | 'text-embedding-ada-002' | 'tts-1' | 'tts-1-hd' | 'claude-3-5-sonnet-20240620' | 'claude-3-opus-20240229' | 'claude-3-sonnet-20240229' | 'claude-3-haiku-20240307';
 export type AssistantType = {
     apiKey: string;
-    apiVendor: 'OpenAI' | 'Claude';
-    apiUrl?: string;
-    apiModel?: string;
+    apiVendor: VendorsType;
+    apiUrl?: VendorsUrlType;
+    apiModel?: VendorsModelType;
 };
 export { Assistant };

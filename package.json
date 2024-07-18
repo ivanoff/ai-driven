@@ -45,7 +45,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ivanoff/ai-driven.git"
+    "url": "git+https://github.com/ivanoff/ai-driven.git"
   },
   "files": [
     "dist/**",

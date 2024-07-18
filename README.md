@@ -2,6 +2,20 @@
 
 `ai-driven` is a non-dependency module that leverages both `Claude AI` and `OpenAI's GPT` to provide a comprehensive suite of natural language processing and computer vision functions. This dual integration allows users to harness the unique strengths of both AI platforms, offering a wider range of capabilities and the ability to choose the most suitable AI model for specific tasks. 
 
+## Example
+
+```typescript
+import { Assistant } from 'ai-driven';
+
+const assistant = new Assistant({ apiVendor: 'OpenAI', apiKey: 'your_api_key_here' });
+
+const translatedText = await assistant.translateText('Hello, world!', 'it');
+
+console.log(translatedText); // => Ciao, mondo!
+```
+
+You can find more usage examples [here](./example.ts)
+
 - [Example](#example)
 - [Capabilities](#capabilities)
 - [Vendors](#vendors)
@@ -28,7 +42,7 @@
       - [Result](#result)
     - [Signature](#signature)
     - [Parameters](#parameters)
-    - [`askOptionsType` Interface](#askoptionstype-interface)
+    - [askOptionsType Interface](#askoptionstype-interface)
     - [Roles](#roles)
     - [Tasks](#tasks)
     - [Response formats](#response-formats)
@@ -38,20 +52,6 @@
 - [Note](#note)
 - [License](#license)
 - [Created by](#created-by)
-
-## Example
-
-```typescript
-import { Assistant } from 'ai-driven';
-
-const assistant = new Assistant({ apiVendor: 'OpenAI', apiKey: 'your_api_key_here' });
-
-const translatedText = await assistant.translateText('Hello, world!', 'it');
-
-console.log(translatedText); // => Ciao, mondo!
-```
-
-You can find more usage examples [here](./example.ts)
 
 ## Capabilities
 
@@ -446,7 +446,7 @@ public async ask(question: string, options?: askOptionsType): Promise<string>
 - `question` (string): The question to ask.
 - `options` (askOptionsType): Optional parameters to customize the question.
 
-#### `askOptionsType` Interface
+#### askOptionsType Interface
 
 - `answerOnly` (boolean): Return only the answer. Default is `true`.
 - `language` (string): Answer in the specified language.

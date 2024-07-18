@@ -2,6 +2,43 @@
 
 `ai-driven` is a module that leverages both `Claude AI` and `OpenAI's GPT` to provide a comprehensive suite of natural language processing and computer vision functions. This dual integration allows users to harness the unique strengths of both AI platforms, offering a wider range of capabilities and the ability to choose the most suitable AI model for specific tasks. 
 
+- [Example](#example)
+- [Capabilities](#capabilities)
+- [Vendors](#vendors)
+  - [OpenAI Vendor](#openai-vendor)
+    - [How much does it cost?](#how-much-does-it-cost)
+    - [Rate Limits](#rate-limits)
+    - [API Key](#api-key)
+    - [List of Models](#list-of-models)
+  - [Claude Vendor](#claude-vendor)
+    - [How much does it cost?](#how-much-does-it-cost-1)
+    - [Rate Limits](#rate-limits-1)
+    - [API Key](#api-key-1)
+    - [List of Models](#list-of-models-1)
+- [Description](#description)
+- [Installation](#installation)
+- [Setup](#setup)
+  - [Option 1: Direct Initialization](#option-1-direct-initialization)
+  - [Option 2: Using Environment Variables](#option-2-using-environment-variables)
+- [Usage](#usage)
+- [API Methods](#api-methods)
+  - [Free-form ask](#free-form-ask)
+    - [Description:](#description-1)
+    - [Free-form ask example](#free-form-ask-example)
+      - [Result](#result)
+    - [Signature](#signature)
+    - [Parameters](#parameters)
+    - [`askOptionsType` Interface](#askoptionstype-interface)
+    - [Roles](#roles)
+    - [Tasks](#tasks)
+    - [Response formats](#response-formats)
+    - [Tones](#tones)
+    - [Writing Styles](#writing-styles)
+    - [Emotions](#emotions)
+- [Note](#note)
+- [License](#license)
+- [Created by](#created-by)
+
 ## Example
 
 ```typescript
@@ -16,7 +53,7 @@ console.log(translatedText); // => Ciao, mondo!
 
 You can find more usage examples [here](./example.ts)
 
-## Brief list of methods
+## Capabilities
 
 `ai-driven` offers easy-to-use methods ([API Methods list](#api-methods)) for a wide range of tasks including:
 
@@ -344,26 +381,44 @@ console.log(result);
 
 Bubble Sort Function for Sorting Colors
 
+
 Ah, the dance of colors, a captivating sight,
+
 Where hues embrace, in a harmonious flight.
+
 Let us embark on a journey, with grace and might,
+
 To sort these vibrant shades, with all our might.
 
+
 Fitness Trainer's Perspective:
+
 Just as our bodies crave a well-ordered routine,
+
 Our colors, too, deserve a rhythm, serene.
+
 Through the Bubble Sort, we'll find the way,
+
 To arrange these hues, in a beautiful display.
 
+
 With each gentle swap, a transformation unfolds,
+
 Allowing the spectrum to shine, its story untold.
+
 From the lightest hue to the darkest hue,
+
 We'll navigate this dance, with love anew.
 
+
 So, let's dive in, and embrace the flow,
+
 As we sort these colors, with a rhythmic glow.
+
 For in this process, we'll find the art,
+
 Of bringing order to the canvas of our heart.
+
 
 ```typescript
 function bubbleSort(colors: string[]): string[] {

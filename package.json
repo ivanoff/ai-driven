@@ -1,6 +1,6 @@
 {
   "name": "ai-driven",
-  "version": "5.0.2",
+  "version": "5.0.3",
   "license": "MIT",
   "author": "Dimitry Ivanov <2@ivanoff.org.ua> # curl -A cv ivanoff.org.ua",
   "description": "AI-driven tool for translation, summarization, text moderation, and sensitive image detection.",

@@ -18,6 +18,11 @@ You can find more usage examples [here](./example.ts)
 
 - [Example](#example)
 - [Capabilities](#capabilities)
+- [Installation](#installation)
+- [Setup](#setup)
+  - [Option 1: Direct Initialization](#option-1-direct-initialization)
+  - [Option 2: Using Environment Variables](#option-2-using-environment-variables)
+- [Usage](#usage)
 - [Vendors](#vendors)
   - [OpenAI Vendor](#openai-vendor)
     - [How much does it cost?](#how-much-does-it-cost)
@@ -30,11 +35,6 @@ You can find more usage examples [here](./example.ts)
     - [API Key](#api-key-1)
     - [List of Models](#list-of-models-1)
 - [Description](#description)
-- [Installation](#installation)
-- [Setup](#setup)
-  - [Option 1: Direct Initialization](#option-1-direct-initialization)
-  - [Option 2: Using Environment Variables](#option-2-using-environment-variables)
-- [Usage](#usage)
 - [API Methods](#api-methods)
   - [Free-form ask](#free-form-ask)
     - [Description:](#description-1)
@@ -95,6 +95,89 @@ You can find more usage examples [here](./example.ts)
   - convey a specific emotion [[list of emotions](#emotions)]
 
 This versatile module simplifies complex AI tasks, making it easier for developers to integrate advanced AI capabilities into their applications.
+
+## Installation
+
+To install the `ai-driven` module, run the following command:
+
+```bash
+npm i -S ai-driven
+```
+
+## Setup
+
+You can configure the assistant in two ways:
+
+### Option 1: Direct Initialization
+
+Provide the configuration when creating the assistant:
+
+```typescript
+const assistant = new Assistant({
+  apiKey: 'your_api_key_here',
+  apiVendor: 'OpenAI', // 'OpenAI' or 'Claude'
+  apiUrl: 'https://api.anthropic.com/v1/messages', // optional
+  apiModel: 'claude-3-haiku-20240307' // optional
+});
+```
+
+### Option 2: Using Environment Variables
+
+1. Create a `.env` file in your project's root directory.
+2. Add the following variables to the `.env` file:
+2.1. For OpenAI:
+
+```
+OPENAI_API_KEY=your_OpenAI_api_key_here
+OPENAI_API_URL=https://api.openai.com/v1/chat/completions
+OPENAI_API_MODEL=gpt-3.5-turbo
+```
+
+2.2. For Claude:
+
+```
+CLAUDE_API_KEY=your_Claude_api_key_here
+CLAUDE_API_URL=https://api.anthropic.com/v1/messages
+CLAUDE_API_MODEL=claude-3-haiku-20240307
+```
+
+The assistant will automatically use these environment variables if no configuration is provided during initialization.
+
+## Usage
+
+Here's a basic example of how to use the `ai-driven` module:
+
+```typescript
+import { Assistant } from 'ai-driven';
+import fs from 'fs/promises';
+
+async function main() {
+  const assistant = new Assistant({ apiKey: 'your_api_key_here' });
+
+  // Translate text
+  const translatedText = await assistant.translateText('Hello, world!', 'it');
+  console.log('Translated text:', translatedText);
+
+  // Check for offensive language
+  const offensiveLevel = await assistant.checkForOffensiveLanguage('You are stupid!');
+  console.log('Offensive level:', offensiveLevel);
+
+  // Check for profanity
+  const profanityLevel = await assistant.checkForProfanity('Damn it!');
+  console.log('Profanity level:', profanityLevel);
+
+  // Check an image for violence
+  const imageBuffer = await fs.readFile('path/to/your/image.jpg');
+  const violenceLevel = await assistant.checkImageForViolence(imageBuffer);
+  console.log('Violence level in image:', violenceLevel);
+
+  // Check an image for pornography
+  const pornographyLevel = await assistant.checkImageForPornography(imageBuffer);
+  console.log('Pornography level in image:', pornographyLevel);
+}
+
+main().catch(console.error);
+```
 
 ## Vendors
 
@@ -230,89 +313,6 @@ More about models: [https://docs.anthropic.com/en/docs/about-claude/models#model
 - **Emotion Detection in Voice**: Identify specific emotions (e.g., joy, sadness, anger) in voice data (not supported by OpenAI vendor) - `detectEmotionInVoice(audioBuffer: Buffer): Promise<string>`
 
 - **Speech-to-text conversion**: Transcribe spoken words from audio recordings into written text (not supported by OpenAI vendor) - `speechToText(audioBuffer: Buffer): Promise<string>`
-
-## Installation
-
-To install the `ai-driven` module, run the following command:
-
-```bash
-npm i -S ai-driven
-```
-
-## Setup
-
-You can configure the assistant in two ways:
-
-### Option 1: Direct Initialization
-
-Provide the configuration when creating the assistant:
-
-```typescript
-const assistant = new Assistant({
-  apiKey: 'your_api_key_here',
-  apiVendor: 'OpenAI', // 'OpenAI' or 'Claude'
-  apiUrl: 'https://api.anthropic.com/v1/messages', // optional
-  apiModel: 'claude-3-haiku-20240307' // optional
-});
-```
-
-### Option 2: Using Environment Variables
-
-1. Create a `.env` file in your project's root directory.
-2. Add the following variables to the `.env` file:
-2.1. For OpenAI:
-
-```
-OPENAI_API_KEY=your_OpenAI_api_key_here
-OPENAI_API_URL=https://api.openai.com/v1/chat/completions
-OPENAI_API_MODEL=gpt-3.5-turbo
-```
-
-2.2. For Claude:
-
-```
-CLAUDE_API_KEY=your_Claude_api_key_here
-CLAUDE_API_URL=https://api.anthropic.com/v1/messages
-CLAUDE_API_MODEL=claude-3-haiku-20240307
-```
-
-The assistant will automatically use these environment variables if no configuration is provided during initialization.
-
-## Usage
-
-Here's a basic example of how to use the `ai-driven` module:
-
-```typescript
-import { Assistant } from 'ai-driven';
-import fs from 'fs/promises';
-
-async function main() {
-  const assistant = new Assistant({ apiKey: 'your_api_key_here' });
-
-  // Translate text
-  const translatedText = await assistant.translateText('Hello, world!', 'it');
-  console.log('Translated text:', translatedText);
-
-  // Check for offensive language
-  const offensiveLevel = await assistant.checkForOffensiveLanguage('You are stupid!');
-  console.log('Offensive level:', offensiveLevel);
-
-  // Check for profanity
-  const profanityLevel = await assistant.checkForProfanity('Damn it!');
-  console.log('Profanity level:', profanityLevel);
-
-  // Check an image for violence
-  const imageBuffer = await fs.readFile('path/to/your/image.jpg');
-  const violenceLevel = await assistant.checkImageForViolence(imageBuffer);
-  console.log('Violence level in image:', violenceLevel);
-
-  // Check an image for pornography
-  const pornographyLevel = await assistant.checkImageForPornography(imageBuffer);
-  console.log('Pornography level in image:', pornographyLevel);
-}
-
-main().catch(console.error);
-```
 
 ## API Methods
 

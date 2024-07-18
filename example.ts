@@ -99,7 +99,7 @@ async function main() {
 
   // Speech-to-Text Conversion
   const transcribedText = await assistant.speechToText(audioBuffer);
-  console.log('Transcribed text:', transcribedText);  
+  console.log('Transcribed text:', transcribedText);
 }
 
 main().catch(console.error);

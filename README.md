@@ -1,6 +1,6 @@
 ![ai-driven](./assets/logo.png)
 
-`ai-driven` is a module that leverages `Claude AI` to provide a comprehensive suite of natural language processing and computer vision functions. It offers easy-to-use methods ([API Methods list](#api-methods)) for a wide range of tasks including:
+`ai-driven` is a module that leverages both `Claude AI` and `OpenAI's GPT` to provide a comprehensive suite of natural language processing and computer vision functions. This dual integration allows users to harness the unique strengths of both AI platforms, offering a wider range of capabilities and the ability to choose the most suitable AI model for specific tasks. It offers easy-to-use methods ([API Methods list](#api-methods)) for a wide range of tasks including:
 
 - **Text Processing**:
   - Content moderation
@@ -37,7 +37,7 @@ This versatile module simplifies complex AI tasks, making it easier for develope
 ```typescript
 import { Assistant } from 'ai-driven';
 
-const assistant = new Assistant({ apiKey: 'your_api_key_here' });
+const assistant = new Assistant({ apiKey: 'your_api_key_here', apiVendor: 'OpenAI' });
 
 const translatedText = await assistant.translateText('Hello, world!', 'it');
 
@@ -45,6 +45,42 @@ console.log(translatedText); // => Ciao, mondo!
 ```
 
 You can find more usage examples [here](./example.ts)
+
+### OpenAI Vendor
+
+#### How much does it cost?
+
+The cost for using OpenAI's models varies depending on the model and usage. As of now, for the GPT-4o model, the pricing is as follows:
+- `$0.005` per 1,000 tokens for input
+- `$0.015` per 1,000 tokens for output
+
+For more detailed and up-to-date pricing, please refer to the [OpenAI Pricing page](https://openai.com/pricing).
+
+If you use the text examples from [example.ts](./example.ts), and you consume `739 tokens for input` and `384 tokens for output`, the cost would be approximately `$0,009`.
+
+However, *the cost will increase significantly if you use image and audio processing models, as the pricing for these services depends on the size and complexity of the files you're working with—larger files incur higher costs*.
+
+#### Rate Limits
+
+For the most up-to-date information on rate limits, please refer to the [OpenAI Rate Limits page](https://platform.openai.com/docs/guides/rate-limits).
+
+#### API Key
+
+To use this library, you'll need an API key. You can obtain one from the OpenAI console:
+[https://platform.openai.com/account/api-keys](https://platform.openai.com/account/api-keys)
+
+#### List of Models
+
+- gpt-4o
+- gpt-4-turbo
+- gpt-4-32k-0613
+- gpt-4-0613
+- gpt-3.5-turbo-0613
+- gpt-3.5-turbo
+
+More about models: [https://platform.openai.com/docs/models](https://platform.openai.com/docs/models)
+
+### Claude Vendor
 
 #### How much does it cost?
 
@@ -74,7 +110,7 @@ More about models: [https://docs.anthropic.com/en/docs/about-claude/models#model
 
 ## Description
 
-`ai-driven` leverages the power of Claude AI to perform various tasks such as:
+`ai-driven` leverages the power of Claude AI and OpenAI's GPT models to perform various tasks such as:
 
 - **Text translation**: Convert text from one language to another while preserving meaning and context - `translateText(text: string, lang?: string, context?: string ): Promise<string>`
 
@@ -107,7 +143,7 @@ More about models: [https://docs.anthropic.com/en/docs/about-claude/models#model
 
 - **Image Captioning**: Generate descriptive captions for images - `captionImage(imageBuffer: Buffer): Promise<string>`
 
-- **Optical Character Recognition (OCR)**: Extract text from images of documents or handwritten notes - `extractTextFromImage(imageBuffer: Buffer): Promise<string>`
+- **Optical Character Recognition (OCR)**: Extract text from images of documents or handwritten notes (not supported by OpenAI vendor) - `extractTextFromImage(imageBuffer: Buffer): Promise<string>`
 
 - **Object Detection in Images**: Identify and locate objects within images - `detectObjectsInImage(imageBuffer: Buffer): Promise<Record<string, number[]>>`
 
@@ -120,9 +156,9 @@ More about models: [https://docs.anthropic.com/en/docs/about-claude/models#model
 - **Facial expression analysis in images**: Recognize and categorize facial expressions in images to determine emotions - `analyzeFacialExpression(imageBuffer: Buffer): Promise<Record<string, string>>`
 
 
-- **Emotion Detection in Voice**: Identify specific emotions (e.g., joy, sadness, anger) in voice data - `detectEmotionInVoice(audioBuffer: Buffer): Promise<string>`
+- **Emotion Detection in Voice**: Identify specific emotions (e.g., joy, sadness, anger) in voice data (not supported by OpenAI vendor) - `detectEmotionInVoice(audioBuffer: Buffer): Promise<string>`
 
-- **Speech-to-text conversion**: Transcribe spoken words from audio recordings into written text - `speechToText(audioBuffer: Buffer): Promise<string>`
+- **Speech-to-text conversion**: Transcribe spoken words from audio recordings into written text (not supported by OpenAI vendor) - `speechToText(audioBuffer: Buffer): Promise<string>`
 
 ## Installation
 
@@ -143,6 +179,7 @@ Provide the configuration when creating the assistant:
 ```typescript
 const assistant = new Assistant({
   apiKey: 'your_api_key_here',
+  apiVendor: 'OpenAI', // 'OpenAI' or 'Claude'
   apiUrl: 'https://api.anthropic.com/v1/messages', // optional
   apiModel: 'claude-3-haiku-20240307' // optional
 });
@@ -152,11 +189,20 @@ const assistant = new Assistant({
 
 1. Create a `.env` file in your project's root directory.
 2. Add the following variables to the `.env` file:
+2.1. For OpenAI:
 
 ```
-CLAUDE_API_KEY=your_api_key_here
+OPENAI_API_KEY=your_OpenAI_api_key_here
+OPENAI_API_URL=https://api.openai.com/v1/chat/completions
+OPENAI_API_MODEL=gpt-3.5-turbo
+```
+
+2.2. For Claude:
+
+```
+CLAUDE_API_KEY=your_Claude_api_key_here
 CLAUDE_API_URL=https://api.anthropic.com/v1/messages
-CLAUDE_API_MODEL=claude-3-opus-20240229
+CLAUDE_API_MODEL=claude-3-haiku-20240307
 ```
 
 The assistant will automatically use these environment variables if no configuration is provided during initialization.
@@ -218,14 +264,14 @@ The `ai-driven` module provides the following methods:
 | `detectEmotion` | Identifies specific emotions (e.g., joy, sadness, anger) in the given text | `text: string` | `string` |
 | `answerQuestion` | Provides an accurate answer to the question based on the given context | `question: string, context: string` | `string` |
 | `captionImage` | Generates a descriptive caption for the given image | `imageBuffer: Buffer` | `string` |
-| `extractTextFromImage` | Extracts text from images of documents or handwritten notes | `imageBuffer: Buffer` | `string` |
+| `extractTextFromImage` | Extracts text from images of documents or handwritten notes (not supported by OpenAI vendor) | `imageBuffer: Buffer` | `string` |
 | `detectObjectsInImage` | Identifies and locates objects within the given image | `imageBuffer: Buffer` | `Record<string, number[]>` |
 | `searchObjectInImage` | Locates a specific object within the image based on the user query | `imageBuffer: Buffer, objectQuery: string` | `number[] \| null` |
 | `checkImageForViolence` | Analyzes the given image for violent content and returns a score from 1 to 10 | `imageBuffer: Buffer` | `number` |
 | `checkImageForPornography` | Analyzes the given image for pornographic content and returns a score from 1 to 10 | `imageBuffer: Buffer` | `number` |
 | `analyzeFacialExpression` | Recognizes and categorizes facial expressions in the given image to determine emotions | `imageBuffer: Buffer` | `Record<string, string>` |
-| `detectEmotionInVoice` | Identifies specific emotions in the given voice data | `audioBuffer: Buffer` | `string` |
-| `speechToText` | Transcribes spoken words from the given audio recording into written text | `audioBuffer: Buffer` | `string` |
+| `detectEmotionInVoice` | Identifies specific emotions in the given voice data (not supported by OpenAI vendor) | `audioBuffer: Buffer` | `string` |
+| `speechToText` | Transcribes spoken words from the given audio recording into written text (not supported by OpenAI vendor) | `audioBuffer: Buffer` | `string` |
 
 ## Note
 

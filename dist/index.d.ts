@@ -2,8 +2,11 @@ declare class Assistant {
     private apiKey;
     private apiUrl;
     private apiModel;
+    private isOpenAI;
     constructor(options?: AssistantType);
     private sendToClaude;
+    private sendToGPT;
+    private sendMessage;
     translateText(text: string, lang?: string, context?: string): Promise<string>;
     detectLanguage(text: string): Promise<string>;
     correctText(text: string): Promise<string>;
@@ -18,6 +21,7 @@ declare class Assistant {
     checkForProfanity(text: string): Promise<number>;
     detectEmotion(text: string): Promise<string>;
     answerQuestion(question: string, context: string): Promise<string>;
+    private getBase64Image;
     captionImage(imageBuffer: Buffer): Promise<string>;
     extractTextFromImage(imageBuffer: Buffer): Promise<string>;
     detectObjectsInImage(imageBuffer: Buffer): Promise<Record<string, number[]>>;
@@ -30,6 +34,7 @@ declare class Assistant {
 }
 export type AssistantType = {
     apiKey: string;
+    apiVendor: 'OpenAI' | 'Claude';
     apiUrl?: string;
     apiModel?: string;
 };

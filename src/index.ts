@@ -99,7 +99,7 @@ class Assistant {
   public async translateText(text: string, lang?: string, context?: string): Promise<string> {
     const l = lang || 'English'
     const c = !context ? '' : `(context: ${context})`;
-    const message = `Translate the following text ${c} to \`${l}\` language if it is not already in \`${l}\`. If the text is already in \`${l}\`, return it as is. Output only the result: \n\n${text}`;
+    const message = `Translate the following text ${c} to \`${l}\` language if it is not already in \`${l}\`. If the text is already in \`${l}\`, return it as is. Output only the translated or original text directly, with no additional explanation or introduction: \n\n${text}`;
     return this.sendMessage(message);
   }
 

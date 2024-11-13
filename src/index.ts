@@ -99,7 +99,7 @@ class Assistant {
   public async translateText(text: string, lang?: string, context?: string): Promise<string> {
     const l = lang || 'English'
     const c = !context ? '' : `(context: ${context})`;
-    const message = `Translate the following text ${c} to \`${l}\` language: \n\n${text}`;
+    const message = `Translate the following text ${c} to \`${l}\` language. Respond with only translated text: \n\n${text}`;
     return this.sendMessage(message);
   }
 

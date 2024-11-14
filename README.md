@@ -169,6 +169,10 @@ async function main() {
   const translatedText = await assistant.translateText('Hello, world!', 'it');
   console.log('Translated text:', translatedText);
 
+  // Bulk translate text
+  const translatedText = await assistant.translateBulkText('Hello, world!', ['it', 'fr', 'es']);
+  console.log('Translated text:', translatedText);
+
   // Check for offensive language
   const offensiveLevel = await assistant.checkForOffensiveLanguage('You are stupid!');
   console.log('Offensive level:', offensiveLevel);
@@ -223,7 +227,7 @@ To use this library, you'll need an API key. You can obtain one from the OpenAI 
   - `gpt-4-vision-preview`
   - `gpt-4o`
   - `gpt-4-32k`
-  - `gpt-3.5-turbo`
+  - `gpt-3.5-turbo` (default)
   - `gpt-3.5-turbo-16k`
   - `gpt-3.5-turbo-instruct`
 
@@ -269,7 +273,7 @@ To use this library, you'll need an API key. You can obtain one from the Anthrop
 - claude-3-5-sonnet-20240620
 - claude-3-opus-20240229
 - claude-3-sonnet-20240229
-- claude-3-haiku-20240307
+- claude-3-haiku-20240307 (default)
 
 More about models: [https://docs.anthropic.com/en/docs/about-claude/models#model-names](https://docs.anthropic.com/en/docs/about-claude/models#model-names)
 
@@ -278,6 +282,8 @@ More about models: [https://docs.anthropic.com/en/docs/about-claude/models#model
 `ai-driven` leverages the power of Claude AI and OpenAI's GPT models to perform various tasks such as:
 
 - **Text translation**: Convert text from one language to another while preserving meaning and context - `translateText(text: string, lang?: string, context?: string ): Promise<string>`
+
+- **Bulk Text translation**: Convert text from one language to another languages while preserving meaning and context, return json object - `translateBulkText(text: string, lang: string[], context?: string ): Promise<string>`
 
 - **Language detection**: Automatically identify the language of a given text. Return 2-letters ISO_639-1 language code - `detectLanguage(text: string): Promise<string>`
 
@@ -333,6 +339,7 @@ The `ai-driven` module provides the following methods:
 |--------|-------------|------------|-------------|
 | `ask` | Ask a question with customizable options [[more](#free-form-ask)] | `text: string, options?: askOptionsType` | `string` |
 | `translateText` | Translates the given text to selected language (English by default) | `text: string, lang?: string, context?: string` | `string` |
+| `translateBulkText` | Translates the given text to selected languages | `text: string, lang: string[], context?: string` | `Record<string, string>` |
 | `detectLanguage` | Detects the language of the provided text | `text: string` | `string` |
 | `correctText` | Corrects grammar and spelling errors in the given text | `text: string` | `string` |
 | `summarizeText` | Generates a summary of the provided text, optionally limiting the summary length | `text: string, maxWords?: number` | `string` |

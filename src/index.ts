@@ -103,6 +103,19 @@ class Assistant {
     return this.sendMessage(message);
   }
 
+  public async translateBulkText(text: string, langs: string[], context?: string): Promise<Record<string, string>> {
+    const c = !context ? '' : `(context: ${context})`;
+    const message = `Give only json object, where key is 2-letter code of language (${langs.join(', ')}), value is translated text. Output only result ${c}. Translate the following text: \n\n${text}`;
+    const response = await this.sendMessage(message);
+    let result;
+    try {
+      result = JSON.parse(response);
+    } catch (error) {
+      result = { error };
+    }
+    return result;
+  }
+
   public async detectLanguage(text: string): Promise<string> {
     const message = `Detect the language of the following text. Respond with only 2-letters ISO_639-1 language code: \n\n${text}`;
     return this.sendMessage(message);
